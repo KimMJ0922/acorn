@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+
+<script type="text/javascript">
+$(function () {
+	$("#btnShow").click(function() {
+		$("img").css("display","inline");
+// 		$("img").show();
+// 		$("img").css("visibility","visible");
+// 		$("img").css("opacity",1);
+	});
+	$("#btnHide").click(function() {
+// 		자리가 안남아있다	
+		$("img").css("display","none"); 
+// 		$("img").hide();
+// 		자리가 남아있다
+// 		$("img").css("visibility","hidden");
+// 		$("img").css("opacity",0);
+	});
+});
+	</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<img alt="" src="../img/01.png" id="img1"><b>01.png</b><br>
+	<img alt="" src="../img/02.png" id="img2"><b>02.png</b><br>
+	<img alt="" src="../img/03.png" id="img3"><b>03.png</b><br>
+	<img alt="" src="../img/04.png" id="img4"><b>04.png</b><br>
+	<hr>
+	<button type="button" id='btnShow'>보이기</button>
+	<button type="button" id='btnHide'>숨기기</button>
+	
+</body>
+</html>

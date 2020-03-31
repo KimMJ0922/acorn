@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8"><script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn1").click(function() {
+			$("#img1").animate({
+				left:"+=100",width:"+=50",height: "+=50"
+			}, 2000,function(){
+				$(this).css({
+					"left":"50px",
+					"width": "150px",
+					"height": "150px"
+				});
+			});
+		});
+		//모든 effect 함수는 괄호 안에 값으로 속도를 지정할수 있다.
+		//안주면 그냥 사라지고 나타난다.
+		//숫자 또는 slow, fast 를 사용
+		$("#btn2").click(function() {
+			$("img").eq(1).hide();
+			
+		});
+		$("#btn3").click(function() {
+			$("img").eq(1).show();
+				
+		});
+		$("#btn4").click(function() {
+			$("img").eq(1)slideUp();
+		});
+		$("#btn5").click(function() {
+			$("img").eq(1).slideDown();
+		});
+		$("#btn6").click(function() {
+			$("img").eq(1).hide();
+		});
+		$("#btn7").click(function() {
+			$("img").eq(1).hide();
+		});
+		$("#btn8").click(function() {
+			$("img").eq(1).hide();
+		});
+		$("#btn9").click(function() {//tiggle = show + hide
+			$("img").eq(1).toggle();
+			
+		});
+		$("#btn10").click(function() {
+			
+		});
+		$("#btn11").click(function() {
+			
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<button type="button" id="btn1"> animate</button>
+<br>
+<img alt="" src="../img/08.png" id="img1" style="position: relative;">
+
+<hr>
+<button type="button" id="btn2"> hide</button>
+<button type="button" id="btn3"> show</button>
+<button type="button" id="btn4"> slide up</button>
+<button type="button" id="btn5"> slide down</button>
+<button type="button" id="btn6"> fade out</button>
+<button type="button" id="btn7"> fade in</button>
+<button type="button" id="btn8"> dage to</button>
+<br>
+<h3>toggle effect</h3>
+<button type="button" id="btn9"> toggle</button>
+<button type="button" id="btn10"> slide toggle</button>
+<button type="button" id="btn11"> fade toggle</button>
+<h3>대상 글자</h3>
+<img alt="" src="../img/08.png">
+
+</body>
+</html>

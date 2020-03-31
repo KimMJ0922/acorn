@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+div,img {margin : 5px auot;
+		  border : 1px solid black; }
+</style>
+<script type="text/javascript">
+$(function(){
+	$("div").eq(0).html("<b> 하이<u>하이</u> ~~! </b>");
+	$("body").append("<b> 바이<u>바이</u> ~~! </b>");
+	
+	//button
+	cnt=0;
+	$("#btn").click(function(){
+		$("body").append("<h1> count: "+cnt+"</h1>");
+		cnt++;
+	});
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<button type="button" id="btn">Append 테스트</button>
+<div></div>
+<img alt="x" src="../img/05.png">
+</body>
+</html>

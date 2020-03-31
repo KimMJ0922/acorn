@@ -1,0 +1,23 @@
+[
+	{
+		"name":"lee",
+		"phone":"01000000000",
+		"addr":"seoul",
+		"study":["java","html"]
+	},
+	{
+		"name":"kim",
+		"phone":"01011111111",
+		"study":["spring","html","react"]
+	},
+	{
+		"name":"bak",
+		"addr":"daegu",
+		"study":["java","html"]
+	},
+	{
+		"name":"gang",
+		"addr":"busan",
+		"phone":"01022222222"
+	}
+]

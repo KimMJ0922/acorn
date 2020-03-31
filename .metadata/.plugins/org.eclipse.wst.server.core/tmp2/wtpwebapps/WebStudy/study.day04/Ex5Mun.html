@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".list li").click(function(){
+			$(this).children("ul")
+				   .css("display","inline");
+			
+			$(this).siblings("li")
+				   .children("ul")
+				   .css("display","none");
+			
+		});
+	});	
+</script>
+<style type="text/css">
+	@import url("http://fonts.googleapis.com/css?family=Lobster");
+	body,ul{
+		margin:0;
+		padding:0;
+	}
+	li{
+		list-style:none;
+	}
+	.sub-list{
+		display:none;
+		padding-top:30px;
+	}
+	ul{
+		width:200px;
+		height:100px;
+		
+	}
+	.list li{
+		background-color:#ffc31e;
+		padding-top:30px;
+		padding-bottom:30px;
+	}
+	.sub-list li{
+		background-color:#ffe04e;
+		padding-left:20px;
+	}
+	
+	}
+</style>
+</head>
+<body>
+	<ul	class="list">
+		<li>패션의류
+			<ul class="sub-list">
+				<li>니트/가디건</li>
+				<li>원피스</li>
+				<li>코트</li>
+				
+			</ul>
+		</li>
+		<li>화장품/미용
+			<ul class="sub-list">
+				<li>스킨/토너</li>
+				<li>에센스</li>
+				<li>아이케어</li>
+			</ul>
+		</li>
+		<li>
+			디지털/가전
+			<ul class="sub-list">
+				<li>휴대폰</li>
+				<li>에어컨</li>
+				<li>냉장고</li>
+				<li>가습기</li>
+			</ul>
+		</li>
+		<li>
+			식품
+			<ul class="sub-list">
+				<li>돼지고기</li>
+				<li>소고기</li>
+				<li>닭고기</li>
+				<li>생수</li>
+				<li>라면</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

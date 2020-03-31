@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> -->
+<script src="https://code.jquery.com/jquery-1.7.1.js"></script>
+<script type="text/javascript">
+ $(function(){
+	 $("#btn1").click(function(){
+		var s="<button type='button' id='btn2'>추가된 버튼1</button>";
+		$("p:eq(0)").html(s);
+	 });
+	 
+	 //추가된 버튼에 이벤트 주기
+	 //나중에 추가된 버튼은 click 이벤트 안된다
+	 /* $("#btn2").click(function(){
+		alert("hello"); 
+	 }); */
+	 
+	 //제이쿼리 버전에 따라서 1.7이전은 live,이후는 on 사용
+	 /* $(document).on("click","#btn2",function(){
+		alert("hello"); 
+	 }); */
+	 
+	 //live  사용법
+	 $("#btn2").live("click",function(){
+		alert("hello"); 
+	 });
+ });
+</script>
+</head>
+<body>
+<button type="button" id="btn1">버튼 추가</button>
+<hr>
+<p></p>
+</body>
+</html>

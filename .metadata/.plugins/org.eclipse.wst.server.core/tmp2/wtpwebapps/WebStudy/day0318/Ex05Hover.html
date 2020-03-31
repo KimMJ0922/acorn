@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	$(function(){
+		$("img:eq(0)").mouseover(function(){
+			$(this).attr("src","../img/07.png");
+		});
+		$("img:eq(0)").mouseout(function(){
+			$(this).attr("src","../img/01.png");	
+		});
+		
+		//-----------
+		$("img:eq(1)").mouseenter(function(){
+			$(this).attr("src","../img/08.png");
+		});
+		$("img:eq(1)").mouseleave(function(){
+			$(this).attr("src","../img/02.png");
+		});
+		
+		//-----------
+		$("img:eq(2)").hover(function(){
+			$(this).attr("src","../img/09.png");
+		},function(){
+			$(this).attr("src","../img/03.png");
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<h3> mouseover + mouseout</h3>
+<img alt="" src="../img/01.png">
+<h3> mouseenter + mouseleave</h3>
+<img alt="" src="../img/02.png">
+<h3> hover</h3>
+<img alt="" src="../img/03.png">
+</body>
+</html>

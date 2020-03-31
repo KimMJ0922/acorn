@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	
+	$(function(){
+		//반복문 each연습
+		//배열 선언
+		var colorArr = ["red","blue","yellow","green","orange","pink"];
+		var flawerArr = ["장미꽃","안개꽃","국화꽃","튤립","프리지아"];
+		
+		//태그 갯수만큼 반복하는 경우
+		$("h3").each(function (i,element) {
+// 			$(element).css("color",colorArr[i]);
+			$(this).css("color",colorArr[i]);
+		});
+		//배열 변수로 반복하는경우
+		$.each(flowerArr,function(idx,item){
+			$("div").append(item+"<br>");
+		});
+		
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<h3>ㅎㅇ 제이쿼리</h3>
+<h3>ㅎㅇ 제이쿼리</h3>
+<h3>ㅎㅇ 제이쿼리</h3>
+<h3>ㅎㅇ 제이쿼리</h3>
+<h3>ㅎㅇ 제이쿼리</h3>
+<h3>ㅎㅇ 제이쿼리</h3>
+<h3>ㅎㅇ 제이쿼리</h3>
+<h3>ㅎㅇ 제이쿼리</h3>
+<hr>
+<div></div>
+</body>
+</html>

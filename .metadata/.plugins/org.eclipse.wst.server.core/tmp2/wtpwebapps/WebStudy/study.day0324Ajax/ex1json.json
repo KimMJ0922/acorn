@@ -1,0 +1,7 @@
+{
+	"jikwon":[
+		{"sabun":"100","irum":"홍길동","juso":"서울시 강서구"},
+		{"sabun":"200","irum":"kim","juso":"서울시 강북구"},
+		{"sabun":"300","irum":"gang","juso":"서울시 강남구"}
+	]
+}

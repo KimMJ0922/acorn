@@ -1,0 +1,49 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Gamja+Flower&display=swap');
+body *{
+	font-family: 'Gamja Flower', cursive;
+	font-weight: bold;
+	font-size:1.5 rem;
+}
+#inputform{
+	position: absolute;
+	top:100px;
+	left:100px;
+}
+
+#list,#selectdata{
+	position: absolute;
+	top:100px;
+	left:500px;
+}
+a{
+	cursor:pointer;
+	color:black;
+}
+.listtable tbody tr:hover{
+	background-color: #ccc;
+	color:green;
+}
+button{
+	margin: 5px 2px 0 5px;
+}
+pre{
+	background:#fff;
+	border:0px;
+	white-space: pre-wrap;
+	word-wrap:break-word;
+}
+
+#view{
+	position: absolute;
+	left:0;
+	top:0;
+	width:130px;
+	height: 50px;
+	background-color: #ffffcc;
+	opacity: 0.8;
+	text-align: center;
+	border: 1px solid gray;
+	border-radius: 5px;
+	
+}

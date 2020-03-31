@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	.init{position:absolute;
+	left: 300px;
+	top:50px;
+	width:300px;
+	border: 5px groove gray
+	}
+
+</style>
+<script type="text/javascript">
+
+$(function(){
+	$("#btn1").click(function() {
+		var width = $("img").css("width");
+		console.log(width);
+		var w = parseInt(width,10);
+		console.log(w);
+		w-=3;
+		$("img").css("width",w+"px");
+	});
+	
+	$("#btn2").click(function() {
+		var width = $("img").css("width");
+		var w = parseInt(width,10);
+		w+=3;
+		$("img").css("width",w+"px");
+	});
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+ <button type="button" id="btn1" >3px 씩 작게</button>
+ <button type="button" id="btn2" >3px 씩 크게</button>
+ <br><br>
+ <img alt="" src="../img/01.png" class="init">
+</body>
+</html>

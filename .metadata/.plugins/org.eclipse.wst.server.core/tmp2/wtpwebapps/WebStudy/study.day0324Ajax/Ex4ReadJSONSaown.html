@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn").click(function(){
+			$.getJSON("Ex4SawonToJSON.jsp",function(data){
+				var str = "<table>";
+				str+= "<tr bgcolor='#ffccff'>";
+				str+= "<th width='50'>번호</th>";
+				str+= "<th width='70'>이름</th>";
+				str+= "<th width='60'>나이</th>";
+				str+= "<th width='80'>부서</th>";
+				str+= "<th width='100'>연봉</th>";
+				str+= "</tr>";
+				$.each(data.sawon,function(i,ele){
+					str+="<tr>";
+					str+="<td>"+ele.num+"</td>";
+					str+="<td>"+ele.name+"</td>";
+					str+="<td>"+ele.age+"</td>";
+					str+="<td>"+ele.buseo+"</td>";
+					str+="<td>"+ele.salary+"</td>";
+					str+="</tr>";
+				});
+				str += "</table>";
+				$("#out").html(str);
+			});
+		});
+		
+	});
+</script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<style type="text/css"></style>
+</head>
+<body>
+	<button type="button" id="btn">
+		버튼
+	</button>
+	
+	<div id="out">
+	
+	</div>
+</body>
+</html>

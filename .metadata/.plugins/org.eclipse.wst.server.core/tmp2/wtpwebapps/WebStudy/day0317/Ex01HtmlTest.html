@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	*{margin : 10px auto;} 
+	div{border: 1px solid black;
+		width: 300px;/* 이것이 style주석*/}
+	#btn1{margin :10px auto;}
+	
+</style>
+<script type="text/javascript">
+$(function(){
+	//html("태그") : 해당 태그도 적용
+	//text("태그") :  문자열로만 인식
+	$("div").eq(0).html("<b> 오늘은 화요일</b>");
+	$("div").eq(1).text("<b> 미치겠음</b>");
+	$("div").eq(2).last().html("<img src='../img/01.png'>");
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<div> </div>
+<div> </div>
+<div> </div>
+<hr>
+<button id="btn1">div 안의 html값 넣기</button>
+<span> </span>
+<span> </span>
+<script type="text/javascript">
+$("#btn1").click(function(){
+	var v = $("div").eq(2).html();
+	
+	$("span").eq(0).text(v);
+	$("span").eq(1).html(v);
+	
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<script type="text/javascript">
+$(function(){
+	$("body *").css("font-size","15px");
+	$("b").css("color","blue");
+	$("div#hello>div>b").css("border","1px solid red");
+	$("#hello>div.Candy>b").css("background","#ffddff");
+	$("#nice").css("border","2px solid green");
+		
+	$(".box1").css("height","100px").css("width","100px").css("background","yellow");
+	
+	$(".box2").css({"width":"100px",
+					   "height":"100px",
+					   "background":"pink"});
+});
+</script>
+</head>
+<body>
+<div class="box1">hhh</div>
+
+<div class="box2">jjj</div>
+
+<div id = "hello" >
+	<div class="kitty">
+		<b>이이이이ㅣ이이ㅣ이이ㅣㅣ</b>
+	</div>
+	<div class="Candy">
+		<b>으으으으으으으ㅡ으으ㅡ</b>
+	</div>
+</div>
+<div id = "nice" >
+	<div class="kitty">
+		<b>아아아아아아아아아ㅏㅏㅏ아ㅏ아</b>
+	</div>
+	<div class="Candy">
+		<b>오ㅗㅗ오오오오오오ㅗ오오ㅗ오ㅗ오오</b>
+	</div>
+</div>
+</body>
+</html>

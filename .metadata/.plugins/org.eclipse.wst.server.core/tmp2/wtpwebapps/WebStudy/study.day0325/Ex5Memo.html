@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		list();
+		$("#btn").click(function(){
+			var nick = $("#nickname").val();
+			var msg = $("#message").val();
+			
+			if(nick.length==0){
+				alert("닉네임 입력");
+				return false;
+			}
+			
+			if(msg.length==0){
+				alert("내용 입력");
+				return false;
+			}
+			
+			$.ajax({
+				type:"post",
+				url:"Ex5MemoAdd.jsp",
+				dataType:"html",
+				data:{
+						"nickname":nick,
+						"message":msg
+					 },
+				success:function(data){
+					list();
+					$("#nickname").val("");
+					$("#nickname").focus();
+					$("#message").val("");
+				}
+			});
+			
+		});
+		
+		$(document).on("click",".joayo",function(){
+			var className = $(this).children("#likes").attr("class");
+			var cnt=0;
+			var num=$(this).parent("td").siblings("#num").text();
+			var likes =0;
+			var dd = $(this).find(".jo");
+			
+			if(className=="glyphicon glyphicon-heart-empty"){
+				$(this).children("#likes").attr("class","glyphicon glyphicon-heart");
+				cnt=1;
+			}else{
+				$(this).children("#likes").attr("class","glyphicon glyphicon-heart-empty");
+				cnt=-1;
+			}
+			$.ajax({
+				type:"post",
+				url:"Ex5MemoLikeUpdate.jsp",
+				dataType:"json",
+				data:{
+					"num":num,
+					"joayo":cnt
+				},
+				context:this,
+				success: function(data){
+					$(this).find(".jo").html(data.joayo);
+				}
+			});
+		});
+		
+		$(document).on("click","span.del",function(){
+			var num = $(this).attr("num");
+		     var jbResult = confirm("해당 글을 지우시겠습니까?");
+		     if(jbResult==true){
+		    	 $.ajax({
+					type:"post",
+					url:"Ex5MemoDel.jsp",
+					dataType:"html",
+					data:{
+						"num":num
+					},
+					success:function(data){
+						list();
+					}
+				});
+		     }
+		});
+	});
+	
+	//목록 출력
+	function list(){
+		var data = $.ajax({
+			type:"post",
+			url:"Ex5MemoList.jsp",
+			dataType:"json",
+			success:function(data){
+				var str = "<table class='table table-striped'>";
+				str+= "<tr bgcolor='#ffccff'>";
+				str+= "<th width='50'>번호</th>";
+				str+= "<th width='70'>닉네임</th>";
+				str+= "<th width='300'>내용</th>";
+				str+= "<th width='80'>좋아요</th>";
+				str+= "<th width='150'>작성일</th>";
+				str+= "</tr>";
+				$.each(data,function(i,ele){
+					str+="<tr>";
+					str+="<td align='center' id='num'>"+ele.num+"</td>";
+					str+="<td align='center'>"+ele.nickname+"</td>";
+					str+="<td>"+ele.message+"</td>";
+					str+="<td align='center'>"+
+							"<span class='joayo' style='cursor:pointer'>"+
+								"<span id='likes' class='glyphicon glyphicon-heart-empty'/>"+
+								"<span id='su' class='jo'>"+ele.joayo+"</span>"+
+							"</span>&nbsp;&nbsp;&nbsp;&nbsp;"+
+							"<span class='del glyphicon glyphicon-trash' style='cursor:pointer' num='"+ele.num+"'></span>"
+							
+							
+							
+					+"</td>";
+					str+="<td align='center'>"+ele.writeday+"</td>";
+					str+="</tr>";
+				});
+				str += "</table>";
+				$("#list").html(str);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div class="alert alert-info" style="text-align:center">
+		<b>메모 리스트</b>	
+	</div>
+	<div id="input" class="alert alert-default">
+		<form class="form-inline">
+			<div>
+				<b>닉네임 : </b>
+				<input type="text" class="form-control input-sm"
+					   style="width:100px;" id="nickname">
+				<b>메세지 : </b>
+				<input type="text" class="form-control input-sm"
+					   style="width:250px;" id="message">
+				<button type="button" class="btn btn-danger btn-sm"
+					    id="btn">전송</button>
+			</div>
+		</form>
+	</div>
+	<div id="list">
+	</div>
+</body>
+</html>

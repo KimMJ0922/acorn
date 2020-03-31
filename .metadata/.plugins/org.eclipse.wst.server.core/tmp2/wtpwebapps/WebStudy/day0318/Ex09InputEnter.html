@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	*{
+	margin: 10px auto;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$("#msg").keyup(function(e) {
+		
+			if(e.keyCode=="13"){
+				$("#color").focus();
+			}
+		});
+		$("#color").keyup(function(c) {
+			var com = $("#msg").val();
+			var col = $("#color").val();
+// 			alert(c.keyCode);
+			if(c.keyCode=="13"){
+				$("#list").append(com+"<br>");
+				$("#list").css("color",col);
+				$("#color").val("");
+				$("#msg").val("").focus();
+			}else if(c.keyCode=="27"){
+				$("#list").append(com+"<br>");
+				$("#list").css("color","black");
+				$("#color").val("");
+				$("#msg").val("").focus();
+			}
+		})
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<h3> 입력후 엔터 누르면 출력하기</h3>
+<input  type="text" id="msg" placeholder="입력해주세요.">
+<input  type="text" id="color" placeholder="색상">
+<!-- 문제 : 색상을 입력후 (예:red, #fdfddf ) 엔터를 누르면  -->
+<!-- #list의 글자색 변경 esc 27 을 누르면 입력된 글자를 지우고 다시 검정색으로 -->
+<div id="list"></div>
+</body>
+</html>

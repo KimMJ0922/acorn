@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	*{margin: 10px auto;}
+	span{font-weight: bold;
+		 margin: 20px;
+		 color : blue;}
+	button {
+		margin-left:  100px;
+		font-size: 1.5em;
+		padding : 5px 5px;
+	}
+	table{border: 5px inset gray;
+		  margin-left: 30px;
+		  width: 700px;
+		  }
+	table thead tr{
+		line-height : 50px;
+		  text-align: center;
+		  color: yellow;
+		  background: #000;
+		  border-bottom: 3px double gray;}
+	table tbody tr{
+		line-height : 40px;
+		  text-align: center;
+		  border: 1px solid gray;
+		  font-size: 15pt;
+		  }
+	table tbody tr td{
+		border-bottom: 1px solid gray;
+		border-right: 1px dotted green;
+	}
+		  
+</style>
+<script type="text/javascript">
+
+$(function(){
+	$("#btnAdd").click(function(){
+		var name = $("#name").val();
+		var age = $("#age").val();
+		var hp = $("#hp").val();
+		
+		$("#name").val("").focus();
+		$("#age").val("")
+		$("#hp").val("")
+		
+		$("tbody").append("<tr><td>"+name+"</td> <td>"+age+"</td> <td>"+hp+"</td> </tr>");
+	});
+	
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<span> 이름 : </span> <input type="text" id="name" size="8">
+	<span> 나이 : </span> <input type="text" id="age" size="4">
+	<span> 핸드폰 : </span> <input type="text" id="hp" size="10">
+	<button type="button" id="btnAdd">테이블에 입력값 출력하기</button>
+	<table>
+	<thead>
+		<tr>
+			<th>이름</th>
+			<td>나이</td>
+			<td>번호</td>
+		</tr>
+		</thead>
+		<tbody>
+		
+		</tbody>
+	</table>
+</body>
+</html>

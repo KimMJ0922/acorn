@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	body { width:1000px;
+			margin: 15px auto;
+			text-align: center;}
+	*{margin: 10px auto;}
+ 	#mainSel{display: none;} 
+  	#subSel{display: none;} 
+	
+</style>
+<script type="text/javascript">
+
+	$(function(){
+		$("#btn").click(function(){
+			$("#mainSel").css({"display": "block"});
+		});
+	
+	$(document).on("change","#mainSel",function(){
+		var wasSel = $(this).val();
+		$("#subSel").css({"display": "block"});
+		if(wasSel=="서울"){
+			$("#sub1").val("성남시").html("성남시");
+			$("#sub2").val("강남시").html("강남시");
+			$("#sub3").val("성북시").html("성북시");
+		}else if(wasSel=="경기도"){
+			$("#sub1").val("고양시").html("고양시");
+			$("#sub2").val("파주시").html("파주시");
+			$("#sub3").val("양주시").html("양주시");
+		}else if(wasSel=="울릉도"){
+			$("#sub1").val("동남쪽").html("동남쪽");
+			$("#sub2").val("뱃길따라").html("뱃길따라");
+			$("#sub3").val("200리").html("200리");
+		}
+	});
+	
+	$(document).on("change","#subSel",function(){
+		var wasSel2 = $(":selected").text();
+		if(wasSel2=="지역선택"){
+			$("#p").html("지역을 선택해주세요.");			
+		}else
+			$("#p").html(wasSel2+"에 살아요."); 
+ 	});
+});
+</script>
+<title>TL</title>
+</head>
+<body>
+	<button type="button" id="btn">주소 검색</button>
+	<br>
+	<select id="mainSel">
+		<option selected="selected"> 지역</option>
+		<option value="서울">서울</option>
+		<option value="경기도">경기도</option>
+		<option value="울릉도">울릉도</option>
+	</select>
+	<br>
+	<select id="subSel">
+		<option selected="selected"> 선택</option>
+		<option value="" id="sub1"></option>
+		<option value="" id="sub2"></option>
+		<option value="" id="sub3"></option>
+	</select>
+	<p id="p"> </p>
+	
+
+</body>
+</html>

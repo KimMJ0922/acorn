@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	*{margin: 0px auto;}
+	
+	.btn{
+		width: 200px;
+		height: 120px;
+		border: 1px solid black;
+		color : black;
+		text-align: center;
+		line-height: 110px;
+		
+	}	
+	.btn:hover {
+		background-color:  black;
+		color:white;
+}
+</style>
+<script type="text/javascript">
+
+	$(function(){
+		var date = new Date();
+		var year = date.getFullYear();
+		var month = date.getMonth();
+		var day = date.getDate();
+		alert(year);
+		
+		$(".btn").click(function () {
+			var s = "";
+			s+="<select id='selYear' style='width:120px;'>";
+			s+="<option selected disabled hidden> 년도 선택</option>";
+			 
+			for( y = year;y >=1950;y--){
+				s+= "<option>"+y+"</option>";
+			}
+			s+="</select>";
+			s+"&nbsp;&nbsp;";
+			s+="<select id='selMonth' style='width:120px;'>";
+			 s+="<option selected disabled hidden> 월 선택</option>";
+			 for( m=1;m<=12;m++){
+				 s+= "<option>"+m+"</option>";
+			 }
+			 s+="</select>";
+			 s+"&nbsp;&nbsp;";
+			 s+="<select id='selDay' style='width:120px;'>";
+			 s+="<option selected disabled hidden> 일 선택</option>";
+			
+			
+			 s+="</select>";
+			 
+			 $(".two").html(s);
+		});
+		//년도 이벤트 
+		$(document).on("change","#selYear",function(){
+			myYear = $(this).val();
+		});
+		//월 이벤트
+		$(document).on("change","#selMonth",function(){
+			myMonth = $(this).val();		
+			endDay=31;
+			if(myMonth==4||myMonth==6||myMonth==9||myMonth==11)
+				endDay=30;
+			else if(myMonth==2){
+				if(myMonth%4==0&&myMonth%100!=0||myMonth%400==0)
+					endDay=29;
+				else
+					endDay=28;
+			}
+			//id="selDay"에 추가하기
+			$("#selDay").empty();
+			 for(d=1;d<=endDay;d++){
+				 $("#selDay").append("<option>"+d+"</option>");
+			 }
+		});
+		//일 이벤트		
+		$(document).on("change","#selDay",function(){
+			myDay = $(this).val();
+			str="생년월일: "+myYear+"년 "+myMonth+"월 "+myDay+"일 ";
+			$(".three").append(str);
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<div class="one">
+		<div class="btn"> 생년월일 검색</div>
+	</div>
+	<div class="two"></div>
+	<div class="three"></div>
+</body>
+</html>

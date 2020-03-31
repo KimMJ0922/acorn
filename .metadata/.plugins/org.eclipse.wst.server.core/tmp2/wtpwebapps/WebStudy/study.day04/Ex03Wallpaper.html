@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".list li img").click(function(){
+			$(this).parent().addClass('active');
+			$(this).parent().siblings("li").removeClass('active');
+			var src = $(this).attr("src");
+			var title = $(this).attr("title");
+			
+			$(".wall").css("background-image","url("+src+")");
+/* 			$(".wall").css("background-size","cover"); */
+			$(".title2").text(title);
+			var r = Math.random()*256;
+			var g = Math.random()*256;
+			var b = Math.random()*256;
+			$(".title2").css("color","rgb("+r+","+g+","+b+")");
+		});
+	});
+	
+</script>
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Tangerine">
+
+<link href="https://fonts.googleapis.com/css?family=Gaegu|Jua&display=swap" rel="stylesheet">
+<style type="text/css">
+@import url("http://fonts.googleapis.com/css?family=Lobster");
+	li{
+		list-style:none;
+	}
+	.title{
+		font-family: 'Lobster';
+	}
+	.title2{
+		font-family: 'Gaegu';
+	}
+	
+	body,h1,ul{margin: 0; padding: 0;}
+	li{list-style: none;}
+	body{
+		background-color: #fff;
+	}
+	
+	.wall{
+		width: 800px; height: 600px;
+		margin: 50px auto;
+		background: #999;
+		position: relative;
+		box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		border-radius: 5px;
+		border: 5px solid #333;
+		overflow: hidden;
+	}
+	
+	.wall .list{
+		background: rgba(0,0,0,0.9);
+		position: absolute;
+		bottom: 0; left: 0;
+		width: 100%; height: 100px;
+		border-top: 1px solid #666;
+	}
+	
+	.wall .list li{
+		float: left;  margin-top: 10px; margin-left: 10px;
+		width: 80px; height: 70px;
+		border: 5px solid #333;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+	
+	.wall .list li img{
+		width: 100%;
+	}
+	
+	.wall .list li.active{
+		border-color: #8dff07;
+	}
+</style>
+</head>
+<body>
+	<div class="wall">
+		<h1 class="title">Select</h1>
+		<h1 class="title2">벽지 선택</h1>
+		<img src="../img/cover2.png">
+		<ul class="list">
+			<li>
+				<img src="../img/b01.png" title="배그림">
+			</li>
+			<li>
+				<img src="../img/b02.png" title="체크">
+			</li>
+			<li>
+				<img src="../img/b03.png" title="대나무">
+			</li>
+			<li>
+				<img src="../img/b04.png" title="연필">
+			</li>
+			<li>
+				<img src="../img/b05.png" title="나뭇잎">
+			</li>
+			<li>
+				<img src="../img/b06.png" title="숲">
+			</li>
+			<li>
+				<img src="../img/m08.jpg" title="호수"> 
+			</li>
+			<li>
+				<img src="../img/m09.jpg" title="바다">
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

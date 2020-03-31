@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".title").click(function(){
+			$(".music-list").slideDown('slow');
+		});
+		
+		$(".music-list li").click(function(){
+		
+			var title = $(this).text();
+			$("h1.title").text(title);
+			
+			
+			var className = $(this).attr("class");
+			$("#cd").animate({
+				"width":0
+			},'slow',function(){
+				$("#cd").removeClass();
+				$("#cd").addClass(className);
+				$(this).animate({
+					"width":"300px"
+				},'slow');
+			});
+			
+			$(".music-list").slideUp('slow');
+		});
+	});	
+</script>
+<style type="text/css">
+	@import url("http://fonts.googleapis.com/css?family=Lobster");
+	body,ul,h1,h2{
+		margin: 0; padding: 0;
+	}
+	
+	body{
+		background-image: url('../img/bg2.png');
+		background-position: top;
+		font-family: 'Lobster';
+	}
+	
+	li{
+		list-style: none;
+	}
+	
+	.album{
+		overflow: hidden;
+		width: 1100px; height: 600px;
+		position: absolute;
+		left: 50%; top: 50%;
+		margin-left: -550px;
+		margin-top: -300px;
+	}
+	
+	.album .cover{
+		float: left;  position: relative;
+		z-index: 10;/*겹칠경우 숫자가 클수록 위로 올라간다*/
+	}
+	
+	#cd{
+		float: left;  width: 300px; height: 500px;
+		position: relative;
+		left: -60px; top: 65px;
+		background-image: url('../img/cd-sprite.png');
+		background-position: right top; /*top,center,bottom 변경해보세요*/
+	}
+
+	/*곡을 선택하면 적용시킬 클래스, cd change*/
+	#cd.music1{background-position: right top;}
+	#cd.music2{background-position: right center;}
+	#cd.music3{background-position: right bottom;}
+	
+	.select-music{
+		cursor: pointer; width: 540px;
+		position: absolute;
+		left: 110px; top: 50px;
+		z-index: 100;/*가장 위로 올라와야 하므로 큰숫자 줬어요*/
+	}
+	
+	/*노래목록 위의 타이틀 */
+	.select-music h1.title{
+		background-color: #fff;
+		background-image: url('../img/play.png');
+		background-repeat: no-repeat;
+		height: 40px;
+		line-height: 40px;
+		color: #ff6600;
+		text-indent: 45px;/*들여쓰기*/
+		font-size: 25px;
+	}
+	
+	/*각 노래 제목 부분 */
+	.select-music  .music-list li{
+		height: 40px; line-height: 40px;/*두개의 높이를 같은 값으로 주는 이유: 세로의 가운데 */
+		color: #666; text-indent: 15px;
+		font-size: 20px;  background-color: rgba(0,0,0,0.8);/*마지막값은 투명도*/		
+	}
+	/*노래곡목에 마우스 올렸을때*/
+	.select-music  .music-list li:hover{
+		background: #ff6600;
+		color: #fff;
+	}
+	
+	/*위의 css다 확인후 안보이게 설정하세요*/
+	.select-music  .music-list{
+		display: none;
+	}
+
+</style>
+</head>
+<body>
+	<div class="album">
+		<div class="select-music">
+			<h1 class="title">Now Playing</h1>
+			<ul class="music-list">
+				<li class="music1">Lost Starts</li>
+				<li class="music2">A Higher Place</li>
+				<li class="music3">Like a Fool</li>
+			</ul>
+		</div>
+		<img src="../img/cover.png" class="cover">
+		<div id="cd"></div>
+	</div>
+</body>
+</html>

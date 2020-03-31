@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<script type="text/javascript">
+''
+$(function(){
+// 	var strWidth=$("#box").outerWidth()+(window.outerWidth-window.innerWidth);
+// 	var strHeight=$("#box").outerHeight()+(window.outerHeight-window.innerHeight);
+// 	alert(strWidth);
+// 	alert(strHeight);
+// 	window.resizeTo(strWidth, strHeight);
+
+
+	var w = $("#box").width();
+    var h = $("#box").height();
+    window.resizeTo(w, h);
+     
+    var mw = window.outerWidth - window.innerWidth;
+    var mh = window.outerHeight - window.innerHeight;
+    window.resizeBy(mw, mh);
+});
+
+
+</script>
+<style type="text/css">
+	* { margin: 5px auto;}
+	#box {width: 450px;
+		  height:150px;
+		  border : 1px solid black;
+		 }	
+	#time {margin:5px;
+		  width:440px;
+		  text-align:center;
+		  height:90px; /* 총 높이 100px*/
+		  background-color: gray;
+		}
+	.sub {  margin: 0 0 0 5px;
+    		width: 140px;
+	    	height: 45px; /* 총 높이 50px*/
+	    	text-align: center;
+	    	display: inline-block;
+	    	cursor:pointer;
+	    	font-size: 20pt;
+    		line-height: 45px;
+	    }
+	#setting {background-color: red;}
+	#start {background-color: yellow;}
+	#stop {background-color: blue;}
+</style>
+<title>메소 타이머</title>
+</head>
+
+<body resizeTo(strWidth, strHeight>
+	<div id="box" >
+		<div id="time">23:23</div>
+		<div id="setting" class="sub">설정</div>
+		<div id="start" class="sub">정지</div>
+		<div id="stop" class="sub">시작</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	div{
+		position: absolute;
+/*  		border: 1px solid black;  */
+	}
+	.one{
+		left: 50px;
+		top: 200px;
+		width:200px;
+		height: 200px;
+	}
+	.two{
+		left: 400px;
+		top: 200px;
+		width:300px;
+		height: 300px;
+	}
+	.three{
+		left: 800px;
+		top: 200px;
+		width:400px;
+		height: 100px;
+	}
+	th,td{
+	border: 1px solid black;
+	cursor: pointer;
+	}
+	
+</style>
+<script type="text/javascript">
+	$(function(){
+		 $("#btn1").click(function(){
+			var s="<table style='width:300px;'>";
+			s+="<tr style='height:50px;'>";
+			s+="<td row='1' col='1'></td>";
+			s+="<td row='1' col='2'></td>";
+			s+="<td row='1' col='3'></td></tr>";
+			
+			s+="<tr style='height:50px;'>";
+			s+="<td row='2' col='1'></td>";
+			s+="<td row='2' col='2'></td>";
+			s+="<td row='2' col='3'></td></tr>";
+			
+			s+="<tr style='height:50px;'>";
+			s+="<td row='3' col='1'></td>";
+			s+="<td row='3' col='2'></td>";
+			s+="<td row='3' col='3'></td></tr>";
+			s+="</table>";
+
+			$(".two").html(s);		
+		 });
+		 
+		 $(document).on("click","td",function(){
+			 	
+				var row= $(this).attr("row");
+				var col= $(this).attr("col");
+				var color = $(this).attr("bgcolor");
+				$(this).attr("bgcolor","yellow");
+				$(".three").append("<p>"+row+"행"+col+"열에 예매를 완료 하였습니다.</p>");
+				if(color=="yellow"){
+					alert("취소하였습니다.");
+					$(this).attr("bgcolor","white");
+					$(".three").empty();
+					$(".three").append("<p>"+row+"행"+col+"열에 예매를 취소 하였습니다.</p>");
+				}
+			 });
+		 //마우스를 올렸을때
+		 $(document).on("mouseover",".two td",function(){
+			var row= $(this).attr("row");
+			var col= $(this).attr("col");
+			var s = "["+row+"]["+col+"]";
+			$(this).html(s);
+			$(this).css({
+				"cursor":"pointer",
+				"border":"2px solid green",
+				"text-align":"center",
+				"fint-size":"10pt",
+				"width":"100px"
+			});
+		 });
+		 
+		 //마우스를 벗어났을때
+		  $(document).on("mouseout",".two td",function(){
+			  $(this).html("");
+			  $(this).css({
+					"border":"2px solid green",
+				});
+		  });
+	});
+</script>
+</head>
+<body>
+<div class="one">
+	<button type="button" id="btn1">영화 예매</button>
+</div>
+<div class="two"></div>
+<div class="three"></div>
+</body>
+</html>

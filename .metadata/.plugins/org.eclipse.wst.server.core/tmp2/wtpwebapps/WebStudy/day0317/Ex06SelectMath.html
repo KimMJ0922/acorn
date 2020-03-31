@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>사칙연산</h3>
+	<input type="text" id="num1" size="5">
+	<select id="sel">
+		<option> + </option>
+		<option> - </option>
+		<option> / </option>
+		<option> * </option>
+	</select>
+	<input type="text" id="num2" size="5">
+	<hr align="left" size="5" width="450" color="red">
+	<p></p>
+	<script type="text/javascript">
+	 
+			 //select 이벤트
+			 $("#sel").change(function (){
+				var num1 = $("#num1").val();
+				var num2 = $("#num2").val();
+				var op = $(":selected").text();
+				
+				if(num1 =="" || num2 ==""){
+					$("p").html("숫자를 입력");
+		
+				}else if(isNaN(num1) || isNaN(num2)){
+					$("p").html("숫자가 아님");
+					
+				}else{
+					var result = eval(num1+op+num2);
+					$("p").html(num1+op+num2+"="+result);
+				}
+	
+		
+			});
+			  
+			  
+			  //숫자가 정확히 입력된경우에만 + 를 선택시
+			  //5+6=11 <- 이런식으로 출력해주세요
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<script type="text/javascript">
+$(function(){
+	//attr("속성","값"): 해당 값으로 변경
+	//attr("속성"): 해당 값을 반환
+	$("#btn1").click(function(){
+		var num1= $("img:eq(0)").attr("src");
+		if(num1=="../img/c1.png"){
+			$("img:eq(0)").attr("src","../img/03.png");	
+		}else{
+			$("img:eq(0)").attr("src","../img/c1.png");
+		}});s
+	
+	$("#btn2").click(function(){
+		var num1= $("img:eq(1)").attr("src");
+		if(num1=="../img/c3.png"){
+			$("img:eq(1)").attr("src","../img/02.png");	
+		}else{
+			
+			$("img:eq(1)").attr("src","../img/c3.png");
+		}});
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<img alt="" src="../img/c1.png" width="100" name="김짱짱">
+	<button type ="button" id="btn1">이미지 변경1</button>
+	<hr>
+	<img alt="" src="../img/c3.png" style= "width : 100px;">
+	<button type ="button" id="btn2">이미지 변경2</button>
+</body>
+</html>

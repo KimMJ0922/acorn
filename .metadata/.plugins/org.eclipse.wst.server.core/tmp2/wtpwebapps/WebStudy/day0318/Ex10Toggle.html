@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	.hello{
+		border: 10px groove lime;
+	}
+	
+</style>
+<script type="text/javascript">
+	$(function(){
+		$("img").bind("mouseover mouseout", function() {
+			$(this).toggleClass("hello");
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<img alt="" src="../talent/26.JPG" width="300px">
+</body>
+</html>

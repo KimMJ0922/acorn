@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn1").click(function(){
+			$.getJSON("ex2json.json",function(data){
+				var str = "";
+				
+				$.each(data,function(i,element){
+					str+="Name : "+element.name+"<br>";
+					
+					if(element.phone==null){
+						str+="Phone : 폰 없음<br>";
+					}else{
+						str+="Phone : "+element.phone+"<br>";
+					}
+					
+					if(element.addr==null){
+						str+="Addr : 집 없음<br>";
+					}else{
+						str+="Addr : "+element.addr+"<br>";
+					}
+					
+					str+="Study : "+element.study+"<br>";
+					str+="<hr>";
+				});
+				
+				$("#out").slideToggle(100,function(){
+					$("#out").html(str);
+				}); 
+			});
+		});	
+		
+		$("#btn2").click(function(){
+			$.getJSON("ex1json.json",function(data){
+				var str = "";
+				$.each(data.jikwon,function(i,element){
+					str+= "Sabun : "+element.sabun+"<br>";
+					str+= "Name : "+element.irum+"<br>";
+					str+= "juso : "+element.juso+"<br><hr>";
+				});
+				
+				$("#out2").slideToggle(100,function(){
+					$("#out2").html(str);
+				}); 
+			});
+		});
+	});
+</script>
+<style type="text/css">
+	body{
+		font-size: 20pt;
+	}
+</style>
+</head>
+<body>
+	<button type="button" id="btn1">json 데이터 읽기</button>
+	<div id="out">
+	
+	</div>
+	
+	<button type="button" id="btn2">json 데이터 읽기</button>
+	<div id="out2">
+	
+	</div>
+</body>
+</html>

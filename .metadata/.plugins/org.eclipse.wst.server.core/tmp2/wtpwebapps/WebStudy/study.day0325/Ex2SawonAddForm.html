@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn1").click(function(){
+			name=$("#name").val();
+			age=$("#age").val();
+			buseo=$("#buseo").val();
+			salary=$("#salary").val();
+			
+			if(name.length==0){
+				alert("이름 입력");
+				return false;
+			}
+			if(age.length==0){
+				alert("나이 입력");
+				return false;
+			}
+			if(salary.length==0){
+				alert("연봉 입력");
+				return false;
+			}
+			$.ajax({
+				method:"POST",
+				url:"Ex2SawonAddDb.jsp",
+				dataType:"json",
+				data:{
+						"name":name,
+						"age":age,
+						"buseo":buseo,
+						"salary":salary
+					 },
+				success:function(data){
+					$("#out").html("<b>"+name+
+								   "님의 정보가 저장되었습니다</b><br>");
+					 }
+			});
+		});
+	});
+</script>
+<link rel="stylesheet" type="text/css" href="../study.day0324Ajax/style.css">
+</head>
+<body>
+	<table>
+		<tr>
+			<th width="100">이름</th>
+			<td width="200">
+				<input type="text" id="name">
+			</td>
+		</tr>
+		<tr>
+			<th>나이</th>
+			<td>
+				<input type="text" id="age">
+			</td>
+		</tr>
+		<tr>
+			<th>부서</th>
+			<td>
+				<select id="buseo">
+					<option value="인사부" selected>인사부</option>
+					<option value="홍보부">홍보부</option>
+					<option value="교육부">교육부</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>연봉</th>
+			<td>
+				<input type="text" id="salary">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<button type="button" id="btn1">등록</button>
+			</td>
+		</tr>
+	</table>
+	<div id="out">
+	ㅇㅇㅇ
+	</div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		list();
+		$("#insertFormbtn").click(function(){
+			$("div.insertForm").css("display","inline");
+			$("div.listForm").css("display","none");
+		});
+		
+		$("#listFormbtn").click(function(){
+			$("div.insertForm").css("display","none");
+			$("div.listForm").css("display","inline");
+		});
+		
+		$("#insertBtn").click(function(){
+			var data = $("#frm").serialize();
+			$.ajax({
+				type:"post",
+				url:"ShopInsertDb.jsp",
+				dataType:"html",
+				data:data,
+				success:function(data){
+					list();
+					$("#listFormbtn").click();
+				}
+			});
+		});
+		
+		$("#searchBtn").click(function(){
+			list();
+		});
+		
+		$("#searchText").keyup(function(e){
+			if(e.keyCode==13){
+				list();
+			}
+		});
+		
+		$(document).on("click","#delbtn",function(){
+			var num = $(this).attr("num");
+			$.ajax({
+				type:"post",
+				dataType:"html",
+				url:"ShopDelDb.jsp",
+				data:{
+					"num":num
+				},
+				success:function(data){
+					list();
+				}
+			});
+		});
+		
+	});
+	function list(){
+		var text = $("#searchText").val();
+		$.ajax({
+			type:"post",
+			url:"ShopListDb.jsp",
+			dataType:"json",
+			data:{
+				"text":text
+			},
+			success:function(data){
+				var str = "";
+				$.each(data,function(i,item){
+					str += "<ul id='sangpumList'>"+
+					"<li>"+
+					"<font>상품명 :"+item.sang+" </font><br>"+
+					"<font>색상 : "+item.color+"</font><br>"+
+					"<font>가격 : "+item.price+"</font>"+
+					"<button id='delbtn' num='"+item.num+"'>삭제</button><br>"+
+					"<font>입고일 : "+item.ipgoday.substring(0,10)+"</font>"+
+					"</li>"+
+					"</ul>";
+				});
+							
+				
+				$("#list").html(str);
+				
+			}
+		});
+	}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="btnlist">
+		<button type="button"
+				id="insertFormbtn"
+				class="btn btn-success">
+				상품등록
+		</button>
+		<button type="button"
+				id="listFormbtn"
+				class="btn btn-success">
+				상품목록
+		</button>
+	</div>
+	<div>
+		<div class="insertForm">
+			<form id="frm">
+				<label for="sang">상품명 : </label>
+				<input type="text" 
+					   id="sang" 
+					   name="sang"
+					   class="form-control">
+					   
+				<label for="color">색상 : </label>
+				<input type="text"
+					   id="color"
+					   name="color"
+					   class="form-control">
+					   
+				<label for="pirce">가격 : </label>
+				<input type="text"
+					   id="price"
+					   name="price"
+					   class="form-control">
+				<button type="button" id="insertBtn" class="btn btn-success">
+					등록
+				</button>
+			</form>
+		</div>
+		
+		<div class="listForm">
+			<label for="searchText" id="searchTextLable">검색 </label>
+			<input type="text"
+				   id="searchText"
+				   name="searchText"
+				   class="form-control">
+			<button type="button" id="searchBtn" class="btn btn-success">
+				검색
+			</button>
+			<div id="list">
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		createXmlHttpRequest();
+		
+		$("#btn1").click(function(){
+			//xml파일 오픈
+			xhr.open("get","ex1_testxml.xml",true);
+			
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4){
+					if(xhr.status==200){
+						//alert("성공");
+						//데이터 처리할 함수
+						process();
+					}else{
+						//alert("실패"+xhr.status);
+					}
+				}else{
+					//alert("실패"+xhr.readyState);
+				}
+			}
+			xhr.send(null);
+		});
+		
+		$("#btn2").click(function(){
+			//xml파일 오픈
+			xhr.open("get","ex1json.json",true);
+			
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4){
+					if(xhr.status==200){
+						//alert("성공");
+						//데이터 처리할 함수
+						process2();
+					}else{
+						//alert("실패"+xhr.status);
+					}
+				}else{
+					//alert("실패"+xhr.readyState);
+				}
+			}
+			xhr.send(null);
+		});
+	});
+	
+	function process2(){
+		 
+		var data = xhr.responseText;
+		//JSON.stringify 개체를 json 문자열로 변환시켜주는 함수
+		//JSON.parse:json 데이터를 객체로 변환시켜주는 함수
+		
+		var parseData = JSON.parse(data);
+		var str ="";
+		
+		for(var i=0;i<parseData.jikwon.length;i++){
+			str+=parseData.jikwon[i].sabun+",";
+			str+=parseData.jikwon[i].irum+",";
+			str+=parseData.jikwon[i].juso+"<br>";
+		}
+		
+		document.getElementById("out2").innerHTML=str;
+	}
+	
+	function process(){
+		//alert(xhr.responseText);
+		
+		//xml받기
+		var data = xhr.responseXML;
+		//xml 노드 분리
+		var itemNode = data.getElementsByTagName("item");
+		
+		var codeNode = data.getElementsByTagName("code");
+		var sangNode = data.getElementsByTagName("sang");
+		
+		var str ="";
+		
+		for(var i=0;i<itemNode.length;i++){
+			str+= codeNode[i].childNodes[0].nodeValue+",";
+			str+= sangNode[i].childNodes[0].nodeValue+"<br>";
+		}
+		
+		document.getElementById("out").innerHTML=str;
+	}
+	
+	function createXmlHttpRequest()
+	{
+		if(window.ActiveXObject){
+			xhr=new ActiveXObject("Msxml2.XMLHTTP");//ie 7.0이전
+			alert("1");
+	  	}else if(window.XMLHttpRequest){
+			xhr=new XMLHttpRequest();//ie, 크롬
+			//XMLHttpRequest : 서버와데이타교환,통신
+			//alert("2");
+	  	}else{
+			document.write("Ajax 를지원하지않습니다");
+	  	}
+	}
+</script>
+</head>
+<body>
+	<button type="button" id="btn1">xml 데이터 읽기</button>
+	<div id="out">
+	
+	</div>
+	<hr>
+	<button type="button" id="btn2">json 데이터 읽기</button>
+	<div id="out2">
+	
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<script type="text/javascript">
+
+$(function(){
+	$("input:button").click(function () {
+		var pic = $(this).attr("pic");
+		var op=$("img").css("opacity");	
+		if(pic=="1"){
+			op-=0.1;
+			if(op<0){
+				op=0;
+			}
+			$("img").css("opacity",op);
+		}else if(pic=="2"){
+			op=parseFloat(op)+parseFloat(0.1);
+			if(op>1.0){
+				op=1.0;
+			}
+			$("img").css("opacity",op);
+		}else{
+			$("img").attr("src","../talent/"+pic);
+			
+			var title= $(this).attr("tit");
+			$("p>b").html(title);
+		}
+	});
+});
+</script>
+<title>Insert title here</title>
+
+</head>
+<body>
+	<p><b>송혜교</b></p>
+	<img alt="" src="../talent/3.JPG" width="200px">
+	<hr>
+	<input type="button" value="점점 흐리게" pic="1">
+	<input type="button" value="점점 진하게" pic="2">
+	<hr>
+	<input type="button" value="산토리나" pic="26.JPG" tit="산토리니">
+	<br>
+	<input type="button" value="한예슬" pic="16.JPG" tit="한예슬">
+	<br>
+	<input type="button" value="송혜교" pic="3.JPG" tit="송혜교">
+	<br>
+	<input type="button" value="이민정" pic="15.JPG" tit="이민정">
+	<br>
+		
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	$(function(){
+		$("a:eq(0)").click(function(e){
+			e.preventDefault();// 기본이벤트를 무효화 ㅅ
+			alert("보수중이다.");
+		});
+		$("h1:eq(0)").click(function(e){
+			$(this).css("background","gray");
+		});
+		$("span:eq(0)").click(function(e){
+			$(this).css("background","yellow")
+			//겹치는 이벤트를 제외한 자신의 이벤트만 실행시키고 싶을때
+			e.stopPropagation();
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<a href="../img/01.png">
+		<img alt="" src="../img/01.png" id="img1">
+	</a>
+	<h1> 큰 이벤트 안에 <span>작은 이벤트가</span> 있어요</h1>
+</body>
+
+</html>

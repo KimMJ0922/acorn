@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	*{margin:  0  auto;}
+	textarea {
+		
+		width: 300px;
+		height: 150px;
+		margin: 10px;
+		resize: none;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		var lim = 30;
+		$("#content").keyup(function() {
+			var len = $(this).val().length;
+			var remain= lim-len;
+			$("#limit").text(remain+"/30");
+			if(remain<=0){
+				alert("최대 글자수를 초과하였습니다.");
+				return;	
+			}
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<h3>하고싶은 말 쓰기 (글자제한 30)</h3>
+<textarea id="content" maxlength="30"></textarea>
+
+<span id="limit"></span>
+</body>
+</html>

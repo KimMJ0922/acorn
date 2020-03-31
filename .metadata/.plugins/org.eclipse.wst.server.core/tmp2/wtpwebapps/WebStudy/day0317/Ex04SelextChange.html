@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+	img{max-width: 200px;
+		border: 10px groove gray;
+		padding: 10px;
+		mar}
+</style>
+<script type="text/javascript">
+$(function(){
+	var wasSel = $(":selected").text();
+	$("#title").html("<p>제목 : "+wasSel+"</p>").css("font-size","2em");
+	$("#sel").change(function () {
+		var imgVal = $(this).val();
+		var imgText = $(this).text();
+		$("img").attr("src","../img/"+imgVal);
+// 		$("#title").html("<p>제목 : "+wasSel+"</p>").css("font-size","2em");
+		
+		//append로 넣을경우 기존것들 지울때
+		$("#title").empty(); // 이전내용 지우기
+		$("#title").append("<p>제목 : "+wasSel+"</p>").css("font-size","2em");
+	});
+});
+
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div>이미지를 선택하세요.</div>
+	<select id="sel">
+		<option value="c1.png">원시인</option>
+		<option value="c3.png">베트맨</option>
+		<option value="03.png">폭탄머리</option>
+		<option value="chick.gif" selected="selected">움직이는 병아리</option>
+		<option value="money.png">돈돈돈</option>
+	</select>
+	<hr>
+	<img alt="" src="../img/chick.gif">
+	<div id="title"> </div>
+</body>
+</html>

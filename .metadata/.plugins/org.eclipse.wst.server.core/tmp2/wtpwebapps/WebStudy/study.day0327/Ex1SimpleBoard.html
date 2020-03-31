@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		list();
+		$("#view").hide();
+		$("#selectdata").hide();
+		
+		$("#btnAdd").click(function(){
+			//var data = $("#frm").serialize();
+			var writer = $("#writer").val();
+			var content = $("#content").val();
+			var subject = $("#subject").val();
+			
+			if(writer.length==0||content.length==0||subject.length==0){
+				alert("모두 입력");
+				return false;
+			}
+			
+			$.ajax({
+				type:"get",
+				url:"BoardInsertDB.jsp",
+				dataType:"html",
+				data:{
+					"writer":writer,
+					"content":content,
+					"subject":subject
+				},
+				success:function(data){
+					list();
+					$("#writer").val("");
+					$("#content").val("");
+					$("#subject").val("");
+				}
+			});
+		});
+		
+		$(document).on("mousemove","a",function(e){
+			var x = event.pageX;
+			var y = event.pageY;
+			var str = $(this).attr("content").substring(0,20);
+			$("#view").css("top",y+30);
+			$("#view").css("left",x+10);
+			$("#view").html(str);
+			$("#view").show();
+		});
+		
+		$(document).on("mouseout","a",function(e){
+			$("#view").hide();
+			
+			
+		});
+		$(document).on("click","a",function(){
+			var num = $(this).attr("num");
+			$.ajax({
+				type:"post",
+				url:"BoardSelectContent.jsp",
+				dataType:"xml",
+				data:{
+					"num":num
+				},
+				success:function(data){
+					var str = "<table class='table table-border'>";
+					$(data).find("data").each(function(i,item){
+						var s = $(this);
+						str += "<tr width='800px;'><td colspan='6'>"+s.find("subject").text()+"</td></tr>"+
+							   "<tr>"+
+								   "<td style='width:100px;'>작성자</td>"+
+								   "<td style='width:200px;'>"+s.find("writer").text()+"</td>"+
+								   "<td style='width:100px;'>작성일</td>"+
+								   "<td style='width:200px;'>"+s.find("writeday").text()+"</td>"+
+								   "<td style='width:100px;'>조회수</td>"+
+								   "<td style='width:100px;'>"+s.find("readcount").text()+"</td>"+
+							   "</tr>"+
+							   "<tr>"+
+							  	"<td colspan='6' style='height:300px;'><pre>"+s.find("content").text()+"</pre></td>"+
+							   "</tr>"+
+							   "<tr>"+
+							  	"<td colspan='6'>"+
+							  	"<button type='button' id='delBtn' num='"+s.find("num").text()+"'>삭제</button>"+
+							  	"<button type='button' id='back'>이전</button>"+
+							  	"</td>"+
+							   "</tr>";
+							   
+					});
+					str+="</table>";
+					$("#list").hide();
+					$("#selectdata").html(str).show();
+				}
+			});
+		});
+		
+		
+		
+		$(document).on("click","#delBtn",function(){
+			var num = $(this).attr("num");
+			var check = confirm("삭제하시겠습니까?");
+			if(check==true){
+				$.ajax({
+					type:"post",
+					url:"BoardDelDB.jsp",
+					dataType:"html",
+					data:{
+						"num":num
+					},
+					success:function(data){
+						alert("삭제 완료");
+						list();
+						$("#selectdata").hide();
+						$("#list").show();
+					}
+				});
+			}
+			
+		});
+		
+		$(document).on("click","#back",function(){
+			list();
+			$("#selectdata").hide();
+			$("#list").show();
+		});
+		
+		
+		
+	});
+	
+	function list(){
+		$.ajax({
+			type:"post",
+			url:"BoardListDB.jsp",
+			dataType:"xml",
+			success:function(data){
+				var cnt = $(data).find("count").text();
+				var str = "<table class='table table-bordered listtable'>"+
+							  "<caption><b style='font-size:20pt;'>게시글 목록</b></caption>"+
+						  	  	"<thead>"+
+						  			"<tr bgcolor='#66cdaa'>"+
+								  		"<th style='width:50px;'>번호</th>"+
+								  		"<th style='width:300px;'>제목</th>"+
+								  		"<th style='width:80px;'>작성자</th>"+
+								  		"<th style='width:100px;'>작성일</th>"+
+								  		"<th style='width:50px;'>조회</th>"+
+								  	"</tr>"+
+								"</thead>";
+				if(cnt==0){ 
+					str += "<tbody>"+
+						   	"<tr height='40'>"+
+						   	"<td colspan='5' align='center'>"+
+						   		"<b>등록된 게시물 없음</b>"+
+						   	"</td></tr></tbody>";
+				}else{
+					$(data).find("data").each(function(){
+						var s = $(this);
+						str +="<tbody>"+
+							  "<tr>"+
+							  "<td>"+s.find("num").text()+"</td>"+
+							  "<td><a num='"+s.find("num").text()+"' content='"+s.find("content").text()+
+							  		"' class='select'>"+
+							  		s.find("subject").text()+"</a></td>"+
+							  "<td>"+s.find("writer").text()+"</td>"+
+							  "<td>"+s.find("writeday").text()+"</td>"+
+							  "<td>"+s.find("readcount").text()+"</td></tr></tbody>";
+					});
+				}
+				str +="</table>";
+				$("#list").html(str);
+			}
+		});
+	}
+	
+	function selectData(){
+		
+	}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="inputform">
+		<form id="frm">
+			<table class="table table-striped">
+				<caption><b style="font-size:20pt;">게시글 목록</b></caption>
+				<tr>
+					<th style="width:80px;" bgcolor="orange">작성자</th>
+					<td>
+						<input type="text" name="writer" id="writer"
+							   autofocus="autofocus" style="width:100px;"
+							   class="form-control input-sm">
+					</td>
+				</tr>
+				<tr>
+					<th style="width:80px;" bgcolor="orange">제목</th>
+					<td>
+						<input type="text" name="subject" id="subject"
+							   style="width:100px;" class="form-control input-sm">
+					</td>
+				</tr>
+				<tr>
+					
+					<td colspan="2">
+						<textarea name="content" id="content"
+							   style="width:300px;height:100px;"></textarea>
+					</td>
+				</tr>
+				<tr>
+					
+					<td colspan="2" align="center">
+						<button type="button" id="btnAdd" class="btn btn-warning btn-lg">게시글 저장</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	<div id="list">
+
+	</div>
+	
+	<div id="selectdata">
+		
+	</div>
+	<div id="view">
+	
+	</div>
+</body>
+</html>
