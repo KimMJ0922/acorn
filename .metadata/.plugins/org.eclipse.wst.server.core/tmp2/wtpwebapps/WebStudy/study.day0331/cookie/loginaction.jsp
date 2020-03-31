@@ -4,10 +4,9 @@
 	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("id");
 	String password = request.getParameter("password");
-	 
 	Cookie cookie = new Cookie("login","ok");
-	cookie.setMaxAge(60*60);
-	
+	cookie.setMaxAge(10);
+	cookie.setPath("/");
 	response.addCookie(cookie);
 	
 	response.sendRedirect("loginmain.jsp");

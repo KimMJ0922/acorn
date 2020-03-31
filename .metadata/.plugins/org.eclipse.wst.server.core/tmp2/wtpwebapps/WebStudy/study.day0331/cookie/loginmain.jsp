@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Refresh" content="10;url=loginmain.jsp">
 <title>Insert title here</title>
 </head>
 <body>
@@ -38,6 +39,7 @@
 
 %>
 <hr width="800" size="5" color="gray" align="left">
+
 <h2>기사 목록</h2>
 <jsp:include page="paper.jsp"/>
 </body>

@@ -7,7 +7,7 @@
      
 	//특정 쿠키만 삭제하기
 	Cookie cookie = new Cookie("login", null) ;
-	cookie.setMaxAge(1) ;
+	cookie.setMaxAge(1);
 	response.addCookie(cookie) ;
 	
 	response.sendRedirect("loginmain.jsp");
